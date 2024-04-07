@@ -1,9 +1,7 @@
+import { Suspense } from "react";
+
 import CarsList from "@/app/components/CarsList";
 import { fetchCars } from "@/app/services/cars";
-
-export const vehicleType = ["PB", "SU"] as const;
-
-export type VehicleType = (typeof vehicleType)[number];
 
 export default async function Home() {
   const cars = await fetchCars();
@@ -22,7 +20,9 @@ export default async function Home() {
         </p>
       </section>
 
-      <CarsList cars={cars} />
+      <Suspense fallback={<p>loading...</p>}>
+        <CarsList cars={cars} />
+      </Suspense>
     </main>
   );
 }

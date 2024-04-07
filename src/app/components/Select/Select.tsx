@@ -2,13 +2,13 @@
 
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
-import { vehicleType } from "@/app/page";
-
 import type { ChangeEvent } from "react";
 
 type Props = {
   onChange: (value: string) => void;
 };
+
+const vehicleTypes = ["PB", "SU"];
 
 export default function Select({ onChange }: Props) {
   const searchParams = useSearchParams();
@@ -37,7 +37,7 @@ export default function Select({ onChange }: Props) {
       className="w-auto w-fit border"
     >
       <option value="">--Select filter--</option>
-      {Object.values(vehicleType).map((type) => (
+      {vehicleTypes.map((type) => (
         <option key={type} value={type}>
           {type}
         </option>

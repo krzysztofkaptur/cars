@@ -4,9 +4,15 @@
 
 ## Run application
 
+### Development
+
 `npm run app:dev`
 
-This command will run server (used json-server library to emulate REST API with given JSON file) on port 5000, and client on port 3000.
+### Production
+
+`npm run build && npm run start`
+
+Next to the client app on port 3000, server with JSON data will be run on port 5000
 
 ## Links
 

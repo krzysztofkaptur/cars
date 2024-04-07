@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "concurrently \"npm run server\" next start",
     "lint": "next lint",
     "server": "npx json-server ./src/app/data/data.json -p 5000",
     "app:dev": "concurrently \"npm run server\" \"npm run dev\""

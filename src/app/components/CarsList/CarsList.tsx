@@ -13,25 +13,13 @@ type Props = {
 };
 
 export default function CarsList({ cars }: Props) {
-  const searchParams = useSearchParams();
-  const [filteredCars, setFilteredCars] = useState(cars || []);
+  const { filteredCars, setFilteredCars } = useFilterCars(cars);
 
   const handleSelectType = (value: string) => {
     return value !== ""
       ? setFilteredCars(cars.filter((car) => car.vehicleType === value))
       : setFilteredCars(cars);
   };
-
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams.toString());
-    if (params.get("filter")) {
-      setFilteredCars(
-        cars.filter((car) => car.vehicleType === params.get("filter")),
-      );
-    } else {
-      setFilteredCars(cars);
-    }
-  }, [cars, searchParams]);
 
   return (
     <>
@@ -66,4 +54,25 @@ export default function CarsList({ cars }: Props) {
       )}
     </>
   );
+}
+
+function useFilterCars(cars: Car[]) {
+  const [filteredCars, setFilteredCars] = useState(cars || []);
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (params.get("filter")) {
+      setFilteredCars(
+        cars.filter((car) => car.vehicleType === params.get("filter")),
+      );
+    } else {
+      setFilteredCars(cars);
+    }
+  }, [cars, searchParams, setFilteredCars]);
+
+  return {
+    filteredCars,
+    setFilteredCars,
+  };
 }
