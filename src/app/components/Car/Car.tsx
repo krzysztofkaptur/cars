@@ -10,13 +10,9 @@ type Props = {
 export default function Car({ car }: Props) {
   return (
     <article key={car.id} className="shadow-lg">
-      <Image
-        layout="responsive"
-        width={300}
-        height={200}
-        src="/images/carimage.jpg"
-        alt="car image"
-      />
+      <figure className="relative h-[200px] w-full">
+        <Image fill={true} src="/images/carimage.jpg" alt="car image" />
+      </figure>
       <div className="flex flex-col gap-4 p-4">
         <header>
           <p className="font-bold">{car.brand}</p>

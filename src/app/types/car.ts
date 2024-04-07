@@ -1,4 +1,6 @@
-export type VehicleType = "PB" | "SU";
+export const vehicleTypes = ["PB", "SU"] as const;
+
+export type VehicleType = (typeof vehicleTypes)[number];
 
 export type Car = {
   id: string;

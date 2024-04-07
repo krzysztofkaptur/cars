@@ -2,13 +2,13 @@
 
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
+import { vehicleTypes } from "@/app/types/car";
+
 import type { ChangeEvent } from "react";
 
 type Props = {
   onChange: (value: string) => void;
 };
-
-const vehicleTypes = ["PB", "SU"];
 
 export default function Select({ onChange }: Props) {
   const searchParams = useSearchParams();
